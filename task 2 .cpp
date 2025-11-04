@@ -1,48 +1,171 @@
-//#include<iostream>
+//#include <iostream>
 //using namespace std;
-//template <typename T >
-//int linearsearch(T arr[], T value, int size)
+//
+//const int MAX = 5;
+//const int NAME_LEN = 50;
+//const int TRANS_LEN = 50;
+//
+//struct Customer 
 //{
-//	for (int i = 0; i < size; ++i)
-//	{
-//		if (arr[i] == value)
-//		{
-//			return 1;
-//		}
-//	}
-//	return -1;
-//}
-//template <typename T>
-//void printsearchresult(int index, T key)
+//    char name[NAME_LEN];
+//    char transaction[TRANS_LEN];
+//};
+//
+//
+//class CircularQueue 
 //{
-//	if (index != -1)
-//	{
-//		cout << "Element " << key << " found at index " << index << "." << endl;
-//	}
-//	else 
-//	{
-//		cout << "Element " << key << "  not found in the array " << index << "." << endl;
-//	}
+//private:
+//    Customer queue[MAX];
+//    int front;
+//    int rear;
+//    int count;
+//
+//public:
+//    CircularQueue() 
+//    {
+//        front = 0;
+//        rear = -1;
+//        count = 0;
+//    }
+//
+//    bool isEmpty() {
+//        return count == 0;
+//    }
+//
+//    bool isFull() {
+//        return count == MAX;
+//    }
+//
+//    void enqueue(Customer c) {
+//        if (isFull()) {
+//            cout << "Error: Queue is full. Cannot add more customers (Overflow)." << endl;
+//            return;
+//        }
+//        rear = (rear + 1) % MAX;
+//        queue[rear] = c;
+//        count++;
+//        cout << "Customer added to the queue." << endl;
+//    }
+//
+//    Customer dequeue()
+//    {
+//        Customer c;
+//        c.name[0] = '\0';
+//        c.transaction[0] = '\0';
+//
+//        if (isEmpty()) {
+//            cout << "Error: Queue is empty. No customer to serve (Underflow)." << endl;
+//            return c;
+//        }
+//        c = queue[front];
+//        front = (front + 1) % MAX;
+//        count--;
+//        return c;
+//    }
+//
+//    void display()
+//    {
+//        if (isEmpty())
+//        {
+//            cout << "No customers in the queue." << endl;
+//            return;
+//        }
+//        cout << "Customers waiting in the queue:" << endl;
+//        for (int i = 0; i < count; i++) {
+//            int index = (front + i) % MAX;
+//
+//            // Print name manually until null character
+//            cout << i + 1 << ". Name: ";
+//            for (int j = 0; queue[index].name[j] != '\0'; j++)
+//                cout << queue[index].name[j];
+//
+//            cout << ", Transaction: ";
+//            for (int j = 0; queue[index].transaction[j] != '\0'; j++)
+//                cout << queue[index].transaction[j];
+//
+//            cout << endl;
+//        }
+//    }
+//
+//    int size() {
+//        return count;
+//    }
+//};
+//
+//void readInput(char arr[], int length) 
+//{
+//    int i = 0;
+//    char ch;
+//    while (i < length - 1) {
+//        ch = cin.get();
+//        if (ch == '\n')
+//            break;
+//        arr[i++] = ch;
+//    }
+//    arr[i] = '\0';
+//   
+//    if (i == length - 1) {
+//        while (cin.get() != '\n');
+//    }
 //}
-//int main() {
-//	// Test with an integer array of size 5
-//	int intArray[5] = { 64, 25, 12, 22, 11 };
-//	int intKey = 12;
-//	int intIndex = linearsearch(intArray, intKey, 5);
-//	printsearchresult(intIndex, intKey);
 //
-//	// Test with a float array of size 4
-//	float floatArray[4] = { 3.14, 2.71, 1.62, 0.57 };
-//	float floatKey = 1.62;
-//	int floatIndex = linearsearcher(floatArray, floatKey , 4);
-//	printsearchresult(floatIndex, floatKey);
+//int main() 
+//{
+//    CircularQueue cq;
+//    Customer c;
+//    int choice;
 //
-//	// Test with a string array of size 4
-//	string stringArray[4] = { "apple", "orange", "banana", "grape" };
-//	string stringKey = "banana";
-//	int stringIndex = linearsearcher(stringArray, stringKey);
-//	printsearchresult(stringIndex, stringKey);
+//    do {
+//        cout << "\n--- Bank Queue Menu ---\n";
+//        cout << "1. Add a customer (enqueue)\n";
+//        cout << "2. Serve a customer (dequeue)\n";
+//        cout << "3. Display all waiting customers\n";
+//        cout << "4. Show total number of customers waiting\n";
+//        cout << "5. Exit\n";
+//        cout << "Enter your choice: ";
+//        cin >> choice;
+//        cin.get(); 
 //
-//	return 0;
+//        switch (choice)
+//        {
+//        case 1:
+//            cout << "Enter customer name: ";
+//            readInput(c.name, NAME_LEN);
+//
+//            cout << "Enter transaction type: ";
+//            readInput(c.transaction, TRANS_LEN);
+//
+//            cq.enqueue(c);
+//            break;
+//
+//        case 2:
+//            c = cq.dequeue();
+//            if (c.name[0] != '\0') 
+//            {
+//                cout << "Served Customer: ";
+//                for (int i = 0; c.name[i] != '\0'; i++) cout << c.name[i];
+//                cout << ", Transaction: ";
+//                for (int i = 0; c.transaction[i] != '\0'; i++) cout << c.transaction[i];
+//                cout << endl;
+//            }
+//            break;
+//
+//        case 3:
+//            cq.display();
+//            break;
+//
+//        case 4:
+//            cout << "Total customers waiting: " << cq.size() << endl;
+//            break;
+//
+//        case 5:
+//            cout << "Exiting program. Goodbye!" << endl;
+//            break;
+//
+//        default:
+//            cout << "Invalid choice. Please try again." << endl;
+//        }
+//    } while (choice != 5);
+//
+//    return 0;
 //}
-//
